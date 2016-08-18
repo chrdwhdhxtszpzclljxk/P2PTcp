@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+Server/Server/Debug/
+Server/Debug/
+*.opendb
+Server/Server.VC.db
+Client/Client/Debug/
+Client/Debug/
+Client/ipch/
+*.db
