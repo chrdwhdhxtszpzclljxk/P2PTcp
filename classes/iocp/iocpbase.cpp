@@ -565,9 +565,12 @@ namespace xiny120 {
 							SOCKADDR sa;  int32_t ret = -1, sasize = sizeof(sa);
 							client = WSAAccept(pThis->socket, (SOCKADDR*)&sa, &sasize, 0, 0);	// 同意连接，并获取一下客户IP地址，并记录
 							if (client != INVALID_SOCKET) {
+								int on = 1;
+								setsockopt(client, IPPROTO_TCP, TCP_NODELAY, (const char *)&on, sizeof(on));
 								pc = pThis->socket2client(client);	// 保存新同意的连接。
 								if (pc != NULL && pThis->postinit(pc)) {	// 发起一个io
 									len = sizeof(pc->ci.ip);
+									memcpy(&pc->ci.sadr, &sa, sizeof(sa));
 									WSAAddressToStringA((LPSOCKADDR)&sa, sizeof(sa), NULL, pc->ci.ip, &len); ok = true;
 								}
 							}

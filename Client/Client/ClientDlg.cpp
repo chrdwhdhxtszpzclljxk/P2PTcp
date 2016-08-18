@@ -6,6 +6,8 @@
 #include "Client.h"
 #include "ClientDlg.h"
 #include "afxdialogex.h"
+#include <socketclient\clientskt.h>
+#include "mainskt.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -65,6 +67,8 @@ BEGIN_MESSAGE_MAP(CClientDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BN2SERVER, &CClientDlg::OnBnClickedBn2server)
+	ON_BN_CLICKED(IDC_BN_PEER, &CClientDlg::OnBnClickedBnPeer)
+	ON_BN_CLICKED(IDCANCEL, &CClientDlg::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -100,6 +104,7 @@ BOOL CClientDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+	mainskt::me();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -158,4 +163,33 @@ HCURSOR CClientDlg::OnQueryDragIcon()
 void CClientDlg::OnBnClickedBn2server()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//xskt* p = new xskt();
+	const char* ip = "127.0.0.1";
+	//strcpy(p->ip, ip);
+	//p->port = 1156;
+	//clientskt::me()->push(p);
+	logininfo* pli = new logininfo();
+	strcpy(pli->un, "b55");
+	pli->hostcount = 1;
+	strcpy(pli->hi[0].ip, ip);
+	pli->hi[0].port = 1157;
+	if (!mainskt::me()->push(pli)) {
+		delete pli;
+	}
+}
+
+
+void CClientDlg::OnBnClickedBnPeer()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	mainskt::me()->getpeers();
+}
+
+
+void CClientDlg::OnBnClickedCancel()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDialogEx::OnCancel();
+	mainskt::me()->close();
+
 }

@@ -189,6 +189,7 @@
     <ClInclude Include="..\..\classes\socketclient\clientskt.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientDlg.h" />
+    <ClInclude Include="mainskt.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -199,6 +200,7 @@
     </ClCompile>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientDlg.cpp" />
+    <ClCompile Include="mainskt.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -3,22 +3,6 @@
 
 
 
-enum {
-	getcs = 0,
-	a2b0,
-	a2b1,
-	a2b2,
-
-};
-
-struct op {
-	uint8_t cmd;
-};
-
-struct cs : public op {
-	uint64_t id;
-};
-
 class mainserver :
 	public xiny120::iocpserver
 {

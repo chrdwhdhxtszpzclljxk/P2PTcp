@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\classes\socketclient\clientskt.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="mainskt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -48,6 +51,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\classes\socketclient\clientskt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mainskt.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

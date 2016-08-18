@@ -150,6 +150,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\classes\cmddef.h" />
     <ClInclude Include="..\..\classes\iocp\iocpbase.h" />
     <ClInclude Include="..\..\classes\iocp\output.h" />
     <ClInclude Include="..\..\classes\iocp\tls.h" />

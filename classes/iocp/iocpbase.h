@@ -107,6 +107,8 @@ namespace xiny120 {
 
 		int32_t pushpath(std::string _path);
 		uint64_t id,usergroupid, permission; char un[64], pwd[32], ip[32]; int64_t logintime, lastactive; bool login;
+		SOCKADDR sadr;
+
 		std::vector<std::string> searchpaths; filetransport ft;
 	};
 
@@ -150,6 +152,7 @@ namespace xiny120 {
 		LPFN_DISCONNECTEX m_pDisConnectEx;
 		HANDLE cpport; bool shutdown; bool echo;
 		uint64_t ccidnow; volatile int32_t conns, lastmaxconns; int32_t iothreads, maxconns,port,maxpending;
+		_ccs ccs;
 	private:
 		void iothread(void*);
 		void heartbeatthread(void*);
@@ -160,7 +163,7 @@ namespace xiny120 {
 		bool bind(SOCKET socket,const HANDLE& hCompletionPort, const uint32_t& dwCompletionKey);
 		bool freebuf(LPOVERLAPPED pBuff);
 		int32_t closesocket(_cc *mp, bool bG = false);
-		_ccs ccs;
+		
 		std::recursive_mutex ccsmt;
 	public:
 		static tm localtime(const int64_t& _now);
