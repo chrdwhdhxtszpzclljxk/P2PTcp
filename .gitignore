@@ -53,3 +53,4 @@ Client/Client/Debug/
 Client/Debug/
 Client/ipch/
 *.db
+*.suo
