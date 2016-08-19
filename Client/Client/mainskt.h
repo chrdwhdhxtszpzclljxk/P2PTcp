@@ -22,7 +22,7 @@ public:
 	uint16_t port;
 };
 
-typedef std::vector<char> vec_buf;
+
 
 class logininfo {
 public:
@@ -38,7 +38,7 @@ public:
 };
 typedef std::vector<peerinfo> vec_peerinfo;
 typedef std::vector<logininfo*> vec_logininfo;
-typedef std::lock_guard<std::recursive_mutex> _lock;
+
 class mainskt
 {
 private:

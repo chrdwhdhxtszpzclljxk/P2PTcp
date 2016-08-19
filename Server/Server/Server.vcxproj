@@ -90,6 +90,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\classes\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,8 +153,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\classes\cmddef.h" />
     <ClInclude Include="..\..\classes\iocp\iocpbase.h" />
-    <ClInclude Include="..\..\classes\iocp\output.h" />
-    <ClInclude Include="..\..\classes\iocp\tls.h" />
+    <ClInclude Include="..\..\classes\output.h" />
+    <ClInclude Include="..\..\classes\tls.h" />
     <ClInclude Include="holeass.h" />
     <ClInclude Include="mainserver.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,8 +162,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\classes\iocp\iocpbase.cpp" />
-    <ClCompile Include="..\..\classes\iocp\output.cpp" />
-    <ClCompile Include="..\..\classes\iocp\tls.cpp" />
+    <ClCompile Include="..\..\classes\output.cpp" />
+    <ClCompile Include="..\..\classes\tls.cpp" />
     <ClCompile Include="holeass.cpp" />
     <ClCompile Include="mainserver.cpp" />
     <ClCompile Include="Server.cpp" />

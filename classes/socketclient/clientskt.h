@@ -12,17 +12,26 @@
 #include <mutex>
 #include <map>
 #include <atomic>
+#include <cmddef.h>
 #pragma warning (disable : 4996)
 
+//class peer {
+//public:
+//	SOCKET skt;
+//	char ip[24];
+//	uint16_t port;
+//	virtual bool notify_recv(char* buf, int32_t len) { return false; };
+//};
 
 class xskt {
 public:
-	SOCKET skt;
+	SOCKET skt,sktp2p;
 	char ip[24];
 	uint16_t port;
-
-	virtual BOOL notifyrecv(char* pbuf, int32_t len) { return FALSE; };
-
+	virtual bool notifyrecv(char* pbuf, int32_t len, const uint8_t& status) { return false; };
+	bool send(void*, uint32_t len, const uint8_t& s = 0);
+	bool _recv();
+	vec_buf mo, mi;
 };
 
 typedef std::list<xskt*> listxskt;
@@ -34,6 +43,7 @@ private:
 	clientskt() ;
 	virtual ~clientskt();
 public:
+	std::recursive_mutex mt;
 	static clientskt* me() {
 		static clientskt* p = NULL;
 		if (p == NULL) {
@@ -43,14 +53,19 @@ public:
 		return p;
 	}
 
-	void push(xskt* skt);
+	void push(const xskt& skt);
+	void send() {
+		skts.send("hello", 4, 0);
+	}
 private:
 	std::atomic<bool> run;
-	listxskt skts,skts0;
+	xskt skts,skts0;
+	
+	listxskt peers;
 	
 	std::thread thr_con_o,thr_com_o;
-	std::recursive_mutex mt;
-	void thr_con(void*);
 	void thr_com(void*);
+	//void thr_peer_com(void*);
+	void thr_accept(SOCKET s);
 };
 

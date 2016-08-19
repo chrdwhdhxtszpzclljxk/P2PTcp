@@ -69,6 +69,7 @@ BEGIN_MESSAGE_MAP(CClientDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BN2SERVER, &CClientDlg::OnBnClickedBn2server)
 	ON_BN_CLICKED(IDC_BN_PEER, &CClientDlg::OnBnClickedBnPeer)
 	ON_BN_CLICKED(IDCANCEL, &CClientDlg::OnBnClickedCancel)
+	ON_BN_CLICKED(IDC_BN_SEND, &CClientDlg::OnBnClickedBnSend)
 END_MESSAGE_MAP()
 
 
@@ -163,11 +164,11 @@ HCURSOR CClientDlg::OnQueryDragIcon()
 void CClientDlg::OnBnClickedBn2server()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	//xskt* p = new xskt();
-	const char* ip = "127.0.0.1";
-	//strcpy(p->ip, ip);
-	//p->port = 1156;
-	//clientskt::me()->push(p);
+	xskt* p = new xskt();
+	const char* ip = "210.192.111.117";
+	strcpy(p->ip, ip);
+	p->port = 1156;
+	clientskt::me()->push(*p);
 	logininfo* pli = new logininfo();
 	strcpy(pli->un, "b55");
 	pli->hostcount = 1;
@@ -192,4 +193,10 @@ void CClientDlg::OnBnClickedCancel()
 	CDialogEx::OnCancel();
 	mainskt::me()->close();
 
+}
+
+
+void CClientDlg::OnBnClickedBnSend()
+{
+	// TODO: 在此添加控件通知处理程序代码
 }

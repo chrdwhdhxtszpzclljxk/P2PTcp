@@ -27,12 +27,6 @@
     <ClInclude Include="..\..\classes\iocp\iocpbase.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\classes\iocp\output.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\classes\iocp\tls.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="holeass.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -40,6 +34,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\classes\cmddef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\output.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\tls.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,16 +53,16 @@
     <ClCompile Include="..\..\classes\iocp\iocpbase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\classes\iocp\output.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\classes\iocp\tls.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="holeass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="mainserver.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\output.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\tls.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

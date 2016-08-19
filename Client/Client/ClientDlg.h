@@ -35,4 +35,5 @@ public:
 	afx_msg void OnBnClickedBn2server();
 	afx_msg void OnBnClickedBnPeer();
 	afx_msg void OnBnClickedCancel();
+	afx_msg void OnBnClickedBnSend();
 };
