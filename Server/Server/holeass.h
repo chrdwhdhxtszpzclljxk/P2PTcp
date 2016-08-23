@@ -23,6 +23,7 @@ public:
 		return p;
 	}
 
+	xiny120::_ccs* getccs() { return &ccs; };
 	virtual void init();
 	virtual void NotifyDisconnection(xiny120::_cc*);
 	virtual bool NotifyConnection(xiny120::_cc*);

@@ -1,5 +1,5 @@
 #include "clientskt.h"
-
+#include "../Client/Client/mainskt.h"
 
 clientskt::clientskt()
 {
@@ -154,7 +154,25 @@ void clientskt::thr_com(void*) {
 	}
 }
 
-
+bool xskt::notifyrecv(char* pbuf, int32_t len, const uint8_t& status) { 
+	bool ret = true;
+	cmdbase* pcb = (cmdbase*)pbuf;
+	switch (pcb->cmd)
+	{
+	case c_wru: {
+		wru w ;
+		w.cmd = c_wru;
+		w.ccid = mainskt::me()->getccid();
+		send(&w, sizeof(w));
+	}break;
+	case c_wru_ok: {
+		mainskt::me()->connectp2p();
+	}break;
+	default:
+		break;
+	}
+	return ret; 
+};
 
 bool xskt::_recv() {
 	char buf[2048] = { 0 }; int32_t recved = 0, total = 0, count = 0; const int32_t size = sizeof(buf); uint8_t status; bool newrecv = false, ret = true;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "mainskt.h"
+#include <socketclient\clientskt.h>
 
 
 mainskt::mainskt()
@@ -46,6 +47,38 @@ void mainskt::getpeers() {
 	for (iter = li.begin(); iter != li.end(); iter++) {
 		logininfo* p = *iter;
 		p->send(&cb, sizeof(cb));
+	}
+
+}
+
+void mainskt::initp2p() {
+	xskt* p = new xskt();
+	const char* ip = "127.0.0.1";
+	strcpy(p->ip, ip);
+	p->port = 1156;
+	clientskt::me()->push(*p);
+	return;
+}
+
+void mainskt::connectp2p() {
+	uint32_t tt = sizeof(connect2ps) + sizeof(peerinfo) * peers.size() - sizeof(peerinfo);
+	_lock guard1(mt);
+	char* temp = new char[tt];
+	connect2ps* cmd = (connect2ps*)temp;
+	cmd->cmd = c_connect2ps;
+	int i = 0;
+	vec_peerinfo::iterator iter;
+	for (iter = peers.begin(); iter != peers.end(); iter++) {
+		memcpy(&cmd->pi[i], &(*iter),sizeof(*iter));
+		char* ip = inet_ntoa(((sockaddr_in*)&cmd->pi[i].sa)->sin_addr);
+		TRACE("%s", ip);
+		i++;
+	}
+	cmd->count = peers.size();
+	vec_logininfo::iterator iter1;
+	for (iter1 = li.begin(); iter1 != li.end(); iter1++) {
+		logininfo* p = *iter1;
+		p->send(cmd, tt);
 	}
 
 }
@@ -141,6 +174,8 @@ void mainskt::thr_com(void*) {
 
 bool logininfo::notifyrecv(const char* pBuf, const int32_t& iLen, const uint8_t& status) {
 	bool ret = false;
+	char ip[24] = { 0 };
+	DWORD iplen = sizeof(ip);
 	cmdbase* cb = (cmdbase*)pBuf;
 	switch (cb->cmd) {
 	case c_getpeers: {
@@ -150,8 +185,8 @@ bool logininfo::notifyrecv(const char* pBuf, const int32_t& iLen, const uint8_t&
 		for (int i = 0; i < peers->count; i++) {
 			p1 = (sockaddr_in*)&peers->pi[i].sa;
 			mainskt::me()->peers.push_back(peers->pi[i]);
-			char* ip = inet_ntoa(p1->sin_addr);
-			TRACE("%s", ip);
+			WSAAddressToStringA((LPSOCKADDR)p1, sizeof(SOCKADDR), NULL, ip, &iplen);
+			TRACE("%s\r\n", ip);
 		}
 
 	}

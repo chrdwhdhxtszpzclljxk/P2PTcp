@@ -119,7 +119,7 @@ namespace xiny120 {
 		int32_t realloc();
 		int32_t left(){ return (len - (cur - buf)); };
 		int32_t move();
-		SOCKET s; uint64_t ccid; LONG ios,maxio; char* buf, *pre, *cur; uint32_t len, packlen; uint8_t initcode[16],status; clientinfo ci;
+		SOCKET s; uint64_t ccid,ccid1; LONG ios,maxio; char* buf, *pre, *cur; uint32_t len, packlen; uint8_t initcode[16],status; clientinfo ci;
 
 	};
 
@@ -140,6 +140,8 @@ namespace xiny120 {
 		int32_t getonlines(){ return ccs.size(); };
 		void setecho(bool b){ echo = b; };
 		void printonlines();
+		void lock() { ccsmt.lock(); }
+		void unlock() { ccsmt.unlock(); };
 	protected:
 		bool iocpbase::setupiothread();
 		bool createport();

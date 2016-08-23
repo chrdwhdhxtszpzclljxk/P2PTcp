@@ -28,7 +28,7 @@ public:
 	SOCKET skt,sktp2p;
 	char ip[24];
 	uint16_t port;
-	virtual bool notifyrecv(char* pbuf, int32_t len, const uint8_t& status) { return false; };
+	virtual bool notifyrecv(char* pbuf, int32_t len, const uint8_t& status);// { return false; };
 	bool send(void*, uint32_t len, const uint8_t& s = 0);
 	bool _recv();
 	vec_buf mo, mi;

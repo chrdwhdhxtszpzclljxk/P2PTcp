@@ -53,6 +53,10 @@ public:
 	}
 	bool push(logininfo*);
 	void getpeers();
+	void initp2p();
+	void connectp2p();
+
+	uint64_t getccid() { if (peers.size() > 0) return peers[0].ccid; return -1; };
 	std::recursive_mutex mt;
 	int maxfds;
 	vec_peerinfo peers;
@@ -61,6 +65,5 @@ private:
 	vec_logininfo li,li0;
 	
 	void thr_com(void*);
-	void thr_com1(void*);
 };
 
