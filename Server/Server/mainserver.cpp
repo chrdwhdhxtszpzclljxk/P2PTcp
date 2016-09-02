@@ -2,6 +2,9 @@
 #include "cmddef.h"
 #include "holeass.h"
 
+
+uint16_t mainserver::port;
+
 mainserver::mainserver()
 {
 }

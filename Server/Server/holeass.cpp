@@ -2,7 +2,7 @@
 #include <output.h>
 #include <cmddef.h>
 
-
+uint16_t holeass::port;
 
 holeass::holeass()
 {

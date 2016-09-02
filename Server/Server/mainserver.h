@@ -15,7 +15,7 @@ public:
 		if (p == NULL) {
 			p = new mainserver();
 			if (p != NULL) {
-				if (!p->start(1157, 20000, 2, 40)) {
+				if (!p->start(port, 20000, 2, 40)) {
 					delete p;
 					p = NULL;
 				}
@@ -27,5 +27,6 @@ public:
 	virtual void NotifyDisconnection(xiny120::_cc*);
 	virtual bool NotifyConnection(xiny120::_cc*);
 	virtual bool NotifyReceived(xiny120::_cc*, const char*, const int32_t&, const uint8_t&);
+	static uint16_t port;
 };
 
